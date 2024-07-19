@@ -1,0 +1,21 @@
+{
+  "name": "application",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf build && esbuild src/index.ts --format=esm --outfile=build/index.mjs",
+    "build2": "rimraf build && node build.js",
+    "build-work": "rimraf build && esbuild src/index.ts --bundle --platform=node --outfile=build/index.mjs --format=esm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.141",
+    "typescript": "^5.5.3",
+    "esbuild": "^0.19.8",
+    "rimraf": "^5.0.5"
+  }
+}
