@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    //"isolatedModules": true,
+    "noEmit": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
+    "target": "es2022",
+    "outDir": "build",
+    //"moduleResolution": "Bundler",
+    //"module": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    /* If your code doesn't run in the DOM: */
+    "lib": ["es2022"]
+  },
+  "exclude": ["node_modules"]
+}
