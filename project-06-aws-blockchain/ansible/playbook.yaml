@@ -1,6 +1,9 @@
 - hosts: aws_ec2
   become: yes
+  vars:
+    go_ethereum_tarball_version: "1.14.11-f3c696fa"
   tasks:
+    # Nginx Install
     - name: Update apt cache and install Nginx
       apt:
         name: nginx
@@ -17,3 +20,28 @@
       service:
         name: nginx
         state: started
+    # Geth Client
+    # https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.14.11-f3c696fa.tar.gz
+    # Download Go-ethereum (aka Geth) is an Ethereum client built in Go. - Gets tarball
+    - name: Télécharger le fichier Geth
+      get_url:
+        url="https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-{{ go_ethereum_tarball_version }}.tar.gz"
+        dest="/tmp/"
+      register: new_archive
+    - name: Download Geth
+      ansible.builtin.get_url:
+        url: "https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-{{ go_ethereum_tarball_version }}.tar.gz"
+        dest: "/tmp/geth-linux-amd64-{{ go_ethereum_tarball_version }}.tar.gz"
+        mode: '0644'
+    - name: Extract Geth
+      ansible.builtin.command:
+        cmd: "tar -zxvf /tmp/geth-linux-amd64-{{ go_ethereum_tarball_version }}.tar.gz -C /tmp"
+    - name: Move Geth into /usr/bin
+      ansible.builtin.command:
+        cmd: "mv /tmp/geth-linux-amd64-{{ go_ethereum_tarball_version }}/geth /usr/bin/geth"
+
+    - name: Copy ethereum_genesis file JSON
+      copy:
+        src: ethereum_genesis.json
+        dest: /tmp/ethereum_genesis.json
+        mode: '0644'

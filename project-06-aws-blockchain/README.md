@@ -11,16 +11,25 @@ Next time install a blockchain
 ## Tuto
 
 1.
+         cd terraform
 
-        terraform apply
+         terraform validate
+
+         terraform plan
+
+         terraform apply --auto-approve
 
 
 2. Ansible test
 
+        cd ansible 
+
         ansible -m ping aws_ec2
 
-Ou 
-            
+Ou
+
+        cd terraform
+
         ansible -m ping aws_ec2 -i inventory.ini
 
 
@@ -30,11 +39,15 @@ Ou
 
 4. Curl and see nginx up
 
-       curl <ip>
+       curl http://<ip>
 
-5. Shutdown
+
+
+Shutdown 
 
        terraform destroy
+
+
 
 
 
@@ -64,3 +77,11 @@ https://www.linkedin.com/pulse/how-provision-configure-aws-ec2-instance-using-te
 
 https://github.com/slavnyj/aws_ec2_terraform_ansible
 
+### Blockchain Ethereum
+
+https://medium.com/meetech/cr%C3%A9er-sa-blockchain-ethereum-sur-aws-en-10-minutes-1bf3bdebc22d
+
+
+Tuto ethereum POA
+
+https://chiheb-nexus.github.io/ethereumpoa/
